@@ -1,4 +1,5 @@
 import unittest
+<<<<<<< HEAD
 
 from restbed import core
 
@@ -8,3 +9,5 @@ class CoreTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+=======
+>>>>>>> origin

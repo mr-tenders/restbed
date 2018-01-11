@@ -10,7 +10,10 @@ name = "pypi"
 "pyinsane2" = "*"
 flask = "*"
 pylint = "*"
+<<<<<<< HEAD
 pillow = "*"
+=======
+>>>>>>> origin
 
 
 [dev-packages]

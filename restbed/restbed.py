@@ -3,6 +3,7 @@
 restbed scanner API
 """
 
+<<<<<<< HEAD
 from flask import Flask, jsonify, request, send_file
 from PIL import Image
 # from core import CoreApi
@@ -13,6 +14,13 @@ import tempfile
 import os
 import sys
 
+=======
+from flask import Flask, jsonify
+
+import pyinsane2
+
+pyinsane2.init()
+>>>>>>> origin
 API = Flask(__name__)
 
 @API.route("/scanners")
@@ -24,6 +32,7 @@ def list_scanners():
     names = [device.name for device in devices]
     return jsonify(names)
 
+<<<<<<< HEAD
 @API.route("/scanner/<int:scanner_pos>/scan")
 def scan(scanner_pos: int):
     devices = pyinsane2.get_devices()
@@ -52,6 +61,8 @@ def scan(scanner_pos: int):
     image.save(filename)
     return send_file(filename, as_attachment=True)
 
+=======
+>>>>>>> origin
 @API.route("/")
 def home():
     """
@@ -67,10 +78,15 @@ def main():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     pyinsane2.init()
     try:
         main()
     except KeyboardInterrupt:
         print("Server shutting down...")
+=======
+    try:
+        main()
+>>>>>>> origin
     finally:
         pyinsane2.exit()
