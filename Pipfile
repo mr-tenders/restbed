@@ -10,6 +10,7 @@ name = "pypi"
 "pyinsane2" = "*"
 flask = "*"
 pylint = "*"
+pillow = "*"
 
 
 [dev-packages]
