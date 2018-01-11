@@ -3,7 +3,6 @@
 restbed scanner API
 """
 
-<<<<<<< HEAD
 from flask import Flask, jsonify, request, send_file
 from PIL import Image
 # from core import CoreApi
@@ -14,13 +13,6 @@ import tempfile
 import os
 import sys
 
-=======
-from flask import Flask, jsonify
-
-import pyinsane2
-
-pyinsane2.init()
->>>>>>> origin
 API = Flask(__name__)
 
 @API.route("/scanners")
@@ -32,18 +24,18 @@ def list_scanners():
     names = [device.name for device in devices]
     return jsonify(names)
 
-<<<<<<< HEAD
 @API.route("/scanner/<int:scanner_pos>/scan")
 def scan(scanner_pos: int):
     devices = pyinsane2.get_devices()
     print(f"Number of scanners found: {len(devices)}")
     dev: pyinsane2.Scanner = devices[scanner_pos]
     query = request.args.get("filename")
-    filename = "out.tiff"
+    temp_handle, filename = tempfile.mkstemp("tif", dir=tempfile.gettempdir())
+    os.close(temp_handle) # closing so PILLOW can handle the file save
     if query is not None:
-        filename = query
-    filename = os.path.join(tempfile.gettempdir(), filename)
+        filename = os.path.join(tempfile.gettempdir(), query)
     print(f"Scanning from device: {str(dev)}")
+    print(f"Temp file: {filename}")
     session: pyinsane2.ScanSession = dev.scan()
     try:
         PROGRESSION_INDICATOR = ['|', '/', '-', '\\']
@@ -57,12 +49,10 @@ def scan(scanner_pos: int):
             session.scan.read()
     except EOFError:
         pass
-    image = session.images[0]
+    image: Image.Image = session.images[0]
     image.save(filename)
     return send_file(filename, as_attachment=True)
 
-=======
->>>>>>> origin
 @API.route("/")
 def home():
     """
@@ -70,23 +60,19 @@ def home():
     """
     return "Hola, Lola!"
 
+
 def main():
     """
     API entrypoint
     """
-    API.run(port=8080)
+    API.run(port=9090)
 
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     pyinsane2.init()
     try:
         main()
     except KeyboardInterrupt:
         print("Server shutting down...")
-=======
-    try:
-        main()
->>>>>>> origin
     finally:
         pyinsane2.exit()

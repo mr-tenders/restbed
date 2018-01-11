@@ -7,13 +7,10 @@ name = "pypi"
 
 [packages]
 
-"pyinsane2" = "*"
+pyinsane2 = "*"
 flask = "*"
 pylint = "*"
-<<<<<<< HEAD
 pillow = "*"
-=======
->>>>>>> origin
 
 
 [dev-packages]
