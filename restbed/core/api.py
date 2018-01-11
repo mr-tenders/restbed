@@ -25,5 +25,3 @@ class CoreApi(object):
     def start_scanning(self):
         pyinsane2.maximize_scan_area(self.scanner)
         self.scan_session = self.scanner.scan()
-
-    def 

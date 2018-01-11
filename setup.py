@@ -14,7 +14,7 @@ setup(
     author="Samantha Enders",
     author_email="sammienders@outlook.com",
     entry_points={
-        "console_scripts": ["restbed.restbed:main"]
+        "console_scripts": ["restbed=restbed.restbed:main"]
     },
     install_requires=[
         "flask",
